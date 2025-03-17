@@ -1,5 +1,7 @@
 package main
 
+import "os"
+
 type Measurement struct {
 	Name  string
 	Min   float64
@@ -8,4 +10,10 @@ type Measurement struct {
 	Count int64
 }
 
-func main() {}
+func main() {
+	measurements, err := os.Open("measurements.txt")
+	if err != nil {
+		panic(err)
+	}
+	defer measurements.Close()
+}
